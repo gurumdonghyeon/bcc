@@ -109,7 +109,7 @@ int trace_func_entry(struct pt_regs *ctx)
     FACTOR
 
     // store as histogram
-    dist.atomic_increment(bpf_log2l(delta));
+    dist.atomic_increment(delta);
 
 out:
     start.update(&index, &ts);
@@ -186,7 +186,7 @@ while (1):
     if args.timestamp:
         print("%-8s\n" % strftime("%H:%M:%S"), end="")
 
-    dist.print_log2_hist(label)
+    dist.print_linear_hist(label)
     dist.clear()
     start.clear()
 
